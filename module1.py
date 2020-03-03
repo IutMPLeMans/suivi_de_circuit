@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2 as cv
-#ééàù
+#ééà
 
 vid_capture = cv.VideoCapture(0)
 vid_cod = cv.VideoWriter_fourcc(*'XVID')
