@@ -2,7 +2,7 @@ from __future__ import division
 import tkinter
 import threading
 import time
- 
+
 ###############################################################################
 def sec2hms(sd):
     """Transforme les secondes sd en chaine "hh:mm:ss" pour affichage"""
@@ -65,7 +65,7 @@ class Application(tkinter.Frame):
         self.saisie.focus_set()
  
     def partir(self,event):
-        """Lance le compte à rebours"""
+        """Lance le compte à rebours de 10s"""
         self.chrono = Comptearebours(0,0,10)
         self.chrono.setDaemon(True)
         self.chrono.start()
