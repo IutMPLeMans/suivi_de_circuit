@@ -8,23 +8,23 @@ import cv2 as cv
 #video = cv.VideoCapture(r"H:\S4\Python\vidéo_tel_2.mp4")
 video = cv.VideoCapture(0)
 #Vérification que la vidéo est fermée
-
-#calcul moyenne des pixels pour savoir si proche du noir 
-#(permet de gérer le niveau de difficulté) ainsi que le pourcentage de noir
-def f1()
-ind = np.where(u<10)
-print(ind[0].shape)
-x=img.shape[0]
-y=img.shape[1]
-p=x*y
-pourcentagenoir=(ind[0].shape[0]/p)*100
-moyenne_u = np.mean(u[ind])
 if not video.isOpened():
     print('verifier le chemin')
     exit()
 print('OK')
-#choix difficulté
 
+#calcul moyenne des pixels pour savoir si proche du noir 
+#(permet de gérer le niveau de difficulté) ainsi que le pourcentage de noir
+def f1():
+    ind = np.where(u<10)
+    print(ind[0].shape)
+    x=img.shape[0]
+    y=img.shape[1]
+    p=x*y
+    pourcentagenoir=(ind[0].shape[0]/p)*100
+    moyenne_u = np.mean(u[ind])
+    return moyenne_u
+#choix difficulté
 D=int(input("rentrer le pourcentage de difficulté"))
 #affichage video couleur et noir/blanc
 i=0
