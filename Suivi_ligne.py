@@ -2,6 +2,34 @@ import numpy as np
 from matplotlib import pyplot as plt
 import cv2 as cv
 
+#Travail avec une vidéo enregistré pour tester le programme
+#video = cv.VideoCapture(r"H:\S4\Python\vidéo_tel_2.mp4")
+video = cv.VideoCapture(0)
+#Vérification que la vidéo est fermée
+if not video.isOpened():
+    print('verifier le chemin')
+    exit()
+print('OK')
+
+#définition de la taille du rectangle à analyser
+def fdifficulté(img):
+    z=int(input("choisir niveau de difficulté 1,2,3"))
+    if z==1:
+        h=img.shape[0]
+        l=img.shape[1]
+    elif z==2:
+        h=img.shape[0]//2
+        l=img.shape[1]//2
+    else:
+        h=img.shape[0]//4
+        l=img.shape[1]//4
+    return h, l 
+
+i=0
+ret, img = video.read()
+h,l=fdifficulté(img)
+
+##commande de bouton à revoir car la fenêtre ne se ferme pas tant que l'on appuie pas sur quitter et le programme ne se lance donc pas
 #Ouverture du bouton décompte
 from tkinter import *
 import time
@@ -59,31 +87,6 @@ lbl1.pack(fill=BOTH, expand=1)
 app = App(root)
 root.mainloop()
 
-#Travail avec une vidéo enregistré pour tester le programme
-
-#video = cv.VideoCapture(r"H:\S4\Python\vidéo_tel_2.mp4")
-video = cv.VideoCapture(0)
-#Vérification que la vidéo est fermée
-if not video.isOpened():
-    print('verifier le chemin')
-    exit()
-print('OK')
-
-
-#définition de la taille du rectangle à analyser
-def fdifficulté(img):
-    z=int(input("choisir niveau de difficulté 1,2,3"))
-    if z==1:
-        h=img.shape[0]
-        l=img.shape[1]
-    elif z==2:
-        h=img.shape[0]//2
-        l=img.shape[1]//2
-    else:
-        h=img.shape[0]//4
-        l=img.shape[1]//4
-    return h, l 
-
 #calcul moyenne des pixels pour savoir si proche du noir 
 #(permet de gérer le niveau de difficulté) ainsi que le pourcentage de noir
 def fpourcentage(img,h,l):
@@ -99,10 +102,8 @@ def fpourcentage(img,h,l):
     return moyenne_u, cv.imshow("zone",u)
 
 #affichage video couleur et noir/blanc
-i=0
-ret, img = video.read()
-h,l=fdifficulté(img)
-while i<4000: 
+
+while i<20: 
     ret, img = video.read()
     i=i+1
     if ret:
