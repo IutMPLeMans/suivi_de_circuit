@@ -1,7 +1,7 @@
 from tkinter import *
 import time
 import tkinter.messagebox
-#C'est un bouton décompte de 10s avec un bouton "commencer" et un bouton "quitter"
+#C'est un bouton décompte de 10s (on peut entrer le temps décompte) avec un bouton "commencer" et un bouton "quitter". Pendant le compte à rebours, on ne peut pas toucher le bouton. Après, on peut.
 
 class App:
  def __init__(self,master):
