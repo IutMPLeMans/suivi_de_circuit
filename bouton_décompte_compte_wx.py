@@ -1,3 +1,4 @@
+#C'est une LED décompte ou compte mais marche pas en module wx
 import wx
 import time
 import wx.gizmos as gizmos
@@ -38,11 +39,11 @@ class ClockWindow(wx.Window):
         self.Bind(wx.EVT_BUTTON, self.OnRestart, self.restartButton)
 
 
-        self.timeRadio = wx.RadioButton(self, -1, "时钟".decode('UTF-8'), style=wx.RB_GROUP)
+        self.timeRadio = wx.RadioButton(self, -1, "时钟 l'heure".decode('UTF-8'), style=wx.RB_GROUP)
         self.Bind(wx.EVT_RADIOBUTTON, self.OnRadio, self.timeRadio)
-        self.timerRadio = wx.RadioButton(self, -1, "正计时".decode('UTF-8'))
+        self.timerRadio = wx.RadioButton(self, -1, "正计时 compte".decode('UTF-8'))
         self.Bind(wx.EVT_RADIOBUTTON, self.OnRadio, self.timerRadio)
-        self.timer_rRadio = wx.RadioButton(self, -1, "倒计时".decode('UTF-8'))
+        self.timer_rRadio = wx.RadioButton(self, -1, "倒计时 décompte".decode('UTF-8'))
         self.Bind(wx.EVT_RADIOBUTTON, self.OnRadio, self.timer_rRadio)
 
         #sizer
@@ -65,15 +66,15 @@ class ClockWindow(wx.Window):
         st = "00 00 00"
         if self.timeRadio.GetValue():#显示时间
             st = time.strftime('%H %M %S', time.localtime())
-        elif self.timerRadio.GetValue():#正向计时
+        elif self.timerRadio.GetValue():#正向计时  compte
             self.timeToCount += 1
             second = self.timeToCount
             h = second / 3600
             m = second / 60
             s = second % 60
             st = "%02d %02d %02d" %(h, m, s)
-        else:#逆向计时
-            self.timeToCount -= 1
+        else:#逆向计时  décompte
+            self.timeToCount -= 1 
             second = self.timeToCount
             if second <= 0:
                 self.timer.Stop()

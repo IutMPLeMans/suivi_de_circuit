@@ -1,3 +1,4 @@
+#compte à rebours sans bouton
 import threading
 import time
 def hello():
