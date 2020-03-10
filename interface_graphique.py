@@ -21,8 +21,9 @@ class MaFenetre(wx.Frame):
         
     def OnBouton1(self, event):
         s, button = self.PrintBouton(event)
-        if s == "Démarrer":
-            button.SetLabel("0") # il faut mettre en place un lien qui démarre le jeu
+        if s == "Démarrer":# il faut mettre la fonction
+            print('démarrage en cours')
+          
         else:
             button.SetLabel("Démarrer")
   

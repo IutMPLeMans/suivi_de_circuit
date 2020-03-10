@@ -13,7 +13,10 @@ print('OK')
 
 #définition de la taille du rectangle à analyser
 def fdifficulté(img):
-    z=int(input("choisir niveau de difficulté 1,2,3"))
+    
+    print(" choisir niveau de difficulté entre 1 ou 2 ou 3 : ")
+    
+    z = int(input())
     if z==1:
         h=img.shape[0]
         l=img.shape[1]
@@ -91,31 +94,34 @@ root.mainloop()
 #(permet de gérer le niveau de difficulté) ainsi que le pourcentage de noir
 def fpourcentage(img,h,l):
     centre=(img.shape[0]//2,img.shape[1]//2)
-    u=img[centre[0]-h//2:centre[0]+h//2,centre[1]-l//2:centre[1]+l//2]
-    ind = np.where(u<10)
+    cadre=img[centre[0]-h//2:centre[0]+h//2, centre[1]-l//2:centre[1]+l//2]  #Definition de la taille du cadre
+    ind = np.where(cadre<75)
     print(ind[0].shape)
     p=h*l
     pourcentagenoir=(ind[0].shape[0]/p)*100
     moyenne_u = np.mean(u[ind])
     #print("moyenne des pixels", moyenne_u)
     #print("pourcentage noire dans l'image", pourcentagenoir)
-    return moyenne_u, cv.imshow("zone",u)
+    return moyenne_u, cv.imshow("zone",cadre), pourcentagenoir
 
 #affichage video couleur et noir/blanc
-
-while i<20: 
+#i=0
+pourcentageN=100
+while pourcentageN>10: 
     ret, img = video.read()
     i=i+1
     if ret:
         print(img.shape)
         cv.imshow('video',img)
         u=cv.cvtColor(img, cv.COLOR_BGR2GRAY); #on convertit en noir et blanc
-        cv.imshow('videoNB',u)
-        cv.waitKey(30)
-        fpourcentage(u,h,l)
-        print("ok")  
+        #cv.imshow('videoNB',u)
+        cv.waitKey(150)
+        moy_u,zone,pourcentageN = fpourcentage(u,h,l)
+        print("pourcentage noire dans l'image", pourcentageN)        
        
     else:
         print('Perdu')
         break
 cv.destroyAllWindows()
+
+#Petit conseil : EVITEZ DE METTRE TROP DE "PRINT" DANS LES BLOUCLES CA DONNE TROP D'INFOS !!!!!!!!!!!! merci.
